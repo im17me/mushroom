@@ -1,4 +1,5 @@
 var express = require('express');
+var fs = require('fs');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
@@ -23,8 +24,24 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// var rpath='./routes';
+// fs.readdir(rpath,function(err,files){
+//   if(err)
+//   {
+//     console.log(err);
+//   }else{
+//     for(var i=0;i<files.length;i++){
+//       if(path.extname(files[i]) == '.js'){
+//         var filename=path.basename(files[i],'.js');
+//         app.use('/'+filename, require(rpath+'/'+filename));
+//       }
+//     }
+//   }
+// });
+
 app.use('/', routes);
 app.use('/users', users);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
