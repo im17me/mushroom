@@ -3,7 +3,9 @@
 /**
  * Module dependencies.
  */
-
+var fs=require('fs');
+var path = require('path');
+var project = JSON.parse(fs.readFileSync(path.join(__dirname,'../project.json'), 'utf8'));
 var app = require('../app');
 var debug = require('debug')('mushroom:server');
 var http = require('http');
@@ -12,7 +14,7 @@ var http = require('http');
  * Get port from environment and store in Express.
  */
 
-var port = normalizePort(process.env.PORT || '80');
+var port = normalizePort(process.env.PORT || project.port);
 app.set('port', port);
 
 /**
